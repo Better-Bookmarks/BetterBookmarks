@@ -49,6 +49,24 @@ const Main = () => {
     // OR USE AXIOS (but logic is same)
   // }, []);
 
+  // const [isLoaded, setIsLoaded] = useState(false);
+  // const [error, setError] = useState(null);
+
+  // useEffect( () => {
+  //   fetch('http://localhost:3000/api/getUser')
+  //     .then(res => res.json())
+  //     .then(
+  //       (result) => {
+  //         setIsLoaded(true);
+  //         setProfile(result); // here is where is state gets change
+  //       },
+  //       (error) => {
+  //         setIsLoaded(true);
+  //         setError(error);
+  //       }
+  //     )
+  // }, []);
+
 
 
   const classes = useStyles();
