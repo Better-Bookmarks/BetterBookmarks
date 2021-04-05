@@ -76,6 +76,7 @@ app.post('/signup',
 app.get('/dashboard',
   // MIDDLE TO VERIFY USER
   (req, res) => {
+    console.log('req.cookies in app.get/dashboard is: ', req.cookies);
     res.render('../client/ejs/dashboard');
 });
 // -------------------------------------------------------------------
@@ -98,7 +99,7 @@ app.use((err, res) => {
 
 
 
-app.listen(PORT, () => console.log(`Example app listening on port ${PORT}!`))
+app.listen(PORT, () => console.log(`Server listening on port: ${PORT}`))
 
 module.exports = app;
 

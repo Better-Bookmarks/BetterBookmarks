@@ -69,30 +69,79 @@ const Main = () => {
   //     )
   // }, []);
 
+  
+
+  // this.state = {
+  //   profile = 
+  //   isClicked = 
+  //   isX
+  // }
+
 
   // Fetch request for user topics and URLs
-  useEffect(() => (
-    fetch('/butt')
-  ))
+  // useEffect(() => {
 
-  const responseBody = {
-    username: 'username',
-    password: 'password',
-    topics: [
-      {'OAuth' : {
-        url1: 'This is my note',
-        url2: 'This is my other note',
+  //   // const requestOptions = {
+  //   //   method: 'PUT',
+  //   //   headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+  //   //   body: submitString
+  //   // }
+
+  //   fetch('http://localhost:3000/api/getProfile')
+  //     .then((res) => res.json())
+  //     .then((data) => setProfile(data))
+  //     .catch((err) => res.status(400).send('Error is ', err))
+  //   }, []);
+  
+  const [ profile, setProfile ] = useState({
+    _id: '',
+    username: '',
+    password: '',
+    topics: [],
+  });
+
+
+
+
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [error, setError] = useState(null);
+
+  useEffect( () => {
+    fetch('http://localhost:3000/api/getProfile')
+      .then(res => res.json())
+      .then(
+        (result) => {
+          setIsLoaded(true);
+          setProfile(result);
         },
-      },
-      {'Recursion': {
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
         }
-      },
-      {'Webpack yargs error': {
-        url1: 'You\'re bad at webpack'
-        }
-      }
-    ]
-  }
+      )
+  }, []);
+
+  const responseBody = profile;
+  console.log('This is our response body: ', responseBody);
+
+  // const responseBody = {
+  //   username: 'username',
+  //   password: 'password',
+  //   topics: [
+  //     {'OAuth' : {
+  //       url1: 'This is my note',
+  //       url2: 'This is my other note',
+  //       },
+  //     },
+  //     {'Recursion': {
+  //       }
+  //     },
+  //     {'Webpack yargs error': {
+  //       url1: 'You\'re bad at webpack'
+  //       }
+  //     }
+  //   ]
+  // }
 
 
   const classes = useStyles();
@@ -100,7 +149,7 @@ const Main = () => {
   // Create an array of Topic Tabs from the data delivered from the database
   const topicsList = [];
   for (let i = 0; i < responseBody.topics.length; i++) {
-    topicsList.push(<TopicTab topic={Object.keys(responseBody.topics[i])[0]} />);
+    topicsList.push(<TopicTab key={i} topic={Object.keys(responseBody.topics[i])[0]} resources={responseBody.topics[i][Object.keys(responseBody.topics[i])[0]]} />);
   }
 
   return (
