@@ -35,6 +35,76 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 
+
+// ------------------------ PUBLIC ROUTES --------------------------
+// *** LOGIN PAGE HANDLING ***************
+  // GET request to serve login.html on the route '/'
+app.get('/', (req, res) => {
+  res.render('../client/ejs/login');
+});
+  // POST request to /login (logging in the user)
+app.post('/login',
+  userController.verifyUser,
+  userController.setSSIDCookie,
+  (req, res) => {
+    console.log('We are here!');
+    res.redirect('/dashboard');
+    console.log('after redirect')
+});
+// ****************************************
+
+// *** SIGN UP PAGE HANDLING **************
+  // GET request to serve signup.html on the route '/signup'
+app.get('/signup', (req, res) => {
+  res.render('../client/ejs/signup');
+});
+  // POST request to /signup (signing up the user)
+app.post('/signup', 
+  userController.createUser,
+  userController.setSSIDCookie,
+  (req, res) => {
+    console.log("requested body: ", req.body)
+    res.redirect('/dashboard');
+});
+// ****************************************
+
+
+
+// ----------------------- AUTHORIZED ROUTES ------------------------
+app.get('/dashboard',
+  // MIDDLE TO VERIFY USER
+  (req, res) => {
+    res.render('../client/ejs/dashboard');
+});
+// -------------------------------------------------------------------
+
+
+//IF YOU WANT A REQUEST FROM SERVER
+app.use('/api', apiRouter)
+
+
+
+// -------------------- 404 HANDLING ---------------------------------
+app.use('*', (req,res) => {
+  res.status(404).send('Not Found');
+});
+// ----------------- GLOBAL ERROR HANDLING ---------------------------
+app.use((err, res) => {
+  res.status(500).json('Internal Server Error: ', err)
+});
+// -------------------------------------------------------------------
+
+
+
+app.listen(PORT, () => console.log(`Example app listening on port ${PORT}!`))
+
+module.exports = app;
+
+
+
+
+
+
 // // ---------------------- GITHUB OAUTH ROUTE HANDLING ----------------------
 // app.get('/github', (req, res) => {
 //   res.redirect('https://github.com/login/oauth/authorize?client_id=d2488361cab711ad9de2');
@@ -68,78 +138,3 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //   }
 // );
 // // -------------------------------------------------------------------------
-
-
-
-// ------------------------ PUBLIC ROUTES --------------------------
-// *** LOGIN PAGE HANDLING ***************
-  // GET request to serve login.html on the route '/'
-app.get('/', (req, res) => {
-  res.render('../client/ejs/login');
-});
-  // POST request to /login (logging in the user)
-app.post('/login',
-  // MIDDLEWARE TO VERIFY USER
-  userController.verifyUser,
-  (req, res) => {
-    res.redirect('/dashboard');
-});
-// ****************************************
-
-// *** SIGN UP PAGE HANDLING **************
-  // GET request to serve signup.html on the route '/signup'
-app.get('/signup', (req, res) => {
-  res.render('../client/ejs/signup');
-});
-  // POST request to /signup (signing up the user)
-app.post('/signup', 
-  // MIDDLEWARE TO CREATE USER
-  userController.createUser,
-  (req, res) => {
-    console.log("requested body: ", req.body)
-    res.redirect('/dashboard');
-});
-// ****************************************
-
-
-
-// ----------------------- AUTHORIZED ROUTES ------------------------
-app.get('/dashboard',
-  // MIDDLE TO VERIFY USER
-  (req, res) => {
-    res.render('../client/ejs/dashboard');
-});
-// -------------------------------------------------------------------
-
-
-// *** TOPICS PAGE HANDLING *****************
-    // POST request to /topics (adding new topic to topics array)
-app.post('/dashboard/:id', 
-    // MIDDLEWARE TO CREATE NEW TOPIC
-    (req, res) => {
-        
-        res.render('/dashboard', {output: req.params.id})
-    }
-)
-// -------------------------------------------------------------------
-
-//IF YOU WANT A REQUEST FROM SERVER
-// app.get('/api')
-
-
-
-// -------------------- 404 HANDLING ---------------------------------
-app.use('*', (req,res) => {
-  res.status(404).send('Not Found');
-});
-// ----------------- GLOBAL ERROR HANDLING ---------------------------
-app.use((err, res) => {
-  res.status(500).json('Internal Server Error: ', err)
-});
-// -------------------------------------------------------------------
-
-
-
-app.listen(PORT, () => console.log(`Example app listening on port ${PORT}!`))
-
-module.exports = app;

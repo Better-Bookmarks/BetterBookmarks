@@ -13,5 +13,5 @@ router.post('/login', (res,req) => {
 // Route to handle GET user to DASHBOARD
 
 // Route to handle POST to INSERT a new TOPIC
-
+router.post('/')
 // Route to handle POST to push url,description in Topics array
