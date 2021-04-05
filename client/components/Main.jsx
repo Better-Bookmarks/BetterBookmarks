@@ -4,17 +4,19 @@ import MenuIcon from '@material-ui/icons/Menu';
 import AddIcon from '@material-ui/icons/Add';
 import useStyles from './MainStyles';
 
-import TopicsTab from './TopicsTab';
+import TopicTab from './TopicTab';
+
 
 const Main = () => {
+
   // Declare a new state variable, which we'll call 'profile'
-  const [profile, setProfile] = useState(
-    {
-      // Initial profile state will look like this if it's a new user
-      username: 'NEWUSERNAME',
-      topics: {},
-    }
-  );
+  // const [profile, setProfile] = useState(
+  //   {
+  //     // Initial profile state will look like this if it's a new user
+  //     username: '',
+  //     topics: {},
+  //   }
+  // );
   // Profile state will look like this if it's a logged in user
   // profile = {
   //   username: 'JasonLee4206969',
@@ -68,8 +70,38 @@ const Main = () => {
   // }, []);
 
 
+  // Fetch request for user topics and URLs
+  useEffect(() => (
+    fetch('/butt')
+  ))
+
+  const responseBody = {
+    username: 'username',
+    password: 'password',
+    topics: [
+      {'OAuth' : {
+        url1: 'This is my note',
+        url2: 'This is my other note',
+        },
+      },
+      {'Recursion': {
+        }
+      },
+      {'Webpack yargs error': {
+        url1: 'You\'re bad at webpack'
+        }
+      }
+    ]
+  }
+
 
   const classes = useStyles();
+
+  // Create an array of Topic Tabs from the data delivered from the database
+  const topicsList = [];
+  for (let i = 0; i < responseBody.topics.length; i++) {
+    topicsList.push(<TopicTab topic={Object.keys(responseBody.topics[i])[0]} />);
+  }
 
   return (
     <div className={classes.root}>
@@ -88,34 +120,9 @@ const Main = () => {
 
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
-        <Container>
-          <Grid container spacing={3}>
-            <Grid item xs={12}>
-              <Paper className={classes.paper}>
-              {/* CREATE THE TOPICS TABS USING profile.topics */}
-                {/* <TopicsTab 
-                  topics={profile.topics}
-                /> */}
-                grid item of size xs=12
-              </Paper>
-            </Grid>
-            <Grid item xs={6}>
-              <Paper className={classes.paper}>grid item of size xs=6</Paper>
-            </Grid>
-            <Grid item xs={6}>
-              <Paper className={classes.paper}>grid item of size xs=6</Paper>
-            </Grid>
-            <Grid item xs={3}>
-              <Paper className={classes.paper}>grid item of size xs=3</Paper>
-            </Grid>
-            <Grid item xs={6}>
-              <Paper className={classes.paper}>grid item of size xs=6</Paper>
-            </Grid>
-            <Grid item xs={3}>
-              <Paper className={classes.paper}>grid item of size xs=3</Paper>
-            </Grid>
-          </Grid>
-        </Container>
+        <div>
+          {topicsList}
+        </div>
       </main>
       
       <Fab color="primary" aria-label="add" className={classes.floatingActionButton}>

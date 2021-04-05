@@ -22,9 +22,9 @@ const TopicsTab = (props) => {
 
   return (
     <div>
-      {props.topics}
+      {props.topic}
     </div>
   )
 }
 
-export default TopicsTab
+export default TopicsTab;
