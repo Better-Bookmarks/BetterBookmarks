@@ -23,7 +23,7 @@ userController.createUser = (req, res, next) => {
         console.log('Successfully create user!');
         // console.log('The password is: ', user.password);
         // Save this to res.locals for later use
-        // res.locals.user = user; // for cookies
+        res.locals.user = user; // for cookies
         // go to Next middlewares
         return next();
       }
@@ -31,7 +31,6 @@ userController.createUser = (req, res, next) => {
   }
 }
 // ----------------------------------------------------------------------------------------
-
 
 
 // verifyUser - middleware to verify user and password exists in the users database -------
@@ -53,6 +52,7 @@ userController.verifyUser = (req, res, next) => {
       // console.log('The user.password is ',user.password);
       if(password === user.password){
         // console.log('success!!')
+        res.locals.user = user;
         return next();
         // return res.send('found password!!!');
       }
@@ -66,6 +66,16 @@ userController.verifyUser = (req, res, next) => {
 
 };
 // ----------------------------------------------------------------------------------------
+
+
+// setSSIDCookie - middleware to store the user id in a cookie ----------------------------
+userController.setSSIDCookie = (req, res, next) => {
+  console.log('The res.locals in cookieController is: ', res.locals);
+  res.cookie('ssid', res.locals.user.id, { httpOnly: true });
+  next();
+}
+// ----------------------------------------------------------------------------------------
+
 
 // createTopic - middleware to create and save new topic into the database -------------
 userController.createNewTopic = (req, res, next) => {

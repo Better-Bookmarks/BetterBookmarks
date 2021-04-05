@@ -8,13 +8,13 @@
 </head>
 <body>
   <h1>Sign Up Page</h1>
-  <form id="sign-up">
-    <input type="text" id="username" autocomplete="off" placeholder="Username"/>
-    <input type="password" id="password" placeholder="Password"/>
+  <form id="sign-up" method='POST' action='/signup'>
+    <input type="text" id="username" name="username" autocomplete="off" placeholder="Username"/>
+    <input type="password" id="password" name="password" placeholder="Password"/>
     <input type="submit" value="SignUp" />
   </form>
 
-  <script>
+  <!-- <script>
     const form = document.getElementById('sign-up');
     form.addEventListener('submit', signUpUser)
 
@@ -36,6 +36,6 @@
   
 
     }
-  </script>
+  </script> -->
 </body>
 </html>
