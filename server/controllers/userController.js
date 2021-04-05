@@ -67,5 +67,12 @@ userController.verifyUser = (req, res, next) => {
 };
 // ----------------------------------------------------------------------------------------
 
+// createTopic - middleware to create and save new topic into the database -------------
+userController.createNewTopic = (req, res, next) => {
+
+
+  
+}
+
 
 module.exports = userController;

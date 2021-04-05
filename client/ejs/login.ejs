@@ -8,6 +8,35 @@
 </head>
 <body>
   <h1>Login Page</h1>
+  <form id="log-in">
+    <input type="text" id="username" autocomplete="off" placeholder="Username"/>
+    <input type="password" id="password" placeholder="Password"/>
+    <input type="submit" value="Login" />
+  </form>
+
+  <script>
+    const form = document.getElementById('log-in');
+    form.addEventListener('submit', logInUser)
+
+    async function logInUser(event){
+      // default behavior of the form is to refresh the page
+      event.preventDefault()
+      const username = document.getElementById('username').value
+      const password = document.getElementById('password').value
+      await fetch('/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          username,
+          password
+        })
+      }).then(res => res.json())
+  
+
+    }
+  </script>
 </body>
 </html>
 

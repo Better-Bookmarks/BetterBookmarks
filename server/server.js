@@ -17,6 +17,7 @@ mongoose.connect(MONGO_URI, {
   // options for the connect method to parse the URI
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  useCreateIndex: true,
   // sets the name of the DB that our collections are part of
   dbName: 'BetterBookMarks'
 })
@@ -95,10 +96,10 @@ app.post('/signup',
   // MIDDLEWARE TO CREATE USER
   userController.createUser,
   (req, res) => {
-  res.redirect('/dashboard');
+    console.log("requested body: ", req.body)
+    res.redirect('/dashboard');
 });
 // ****************************************
-// -------------------------------------------------------------------
 
 
 
@@ -110,6 +111,17 @@ app.get('/dashboard',
 });
 // -------------------------------------------------------------------
 
+
+// *** TOPICS PAGE HANDLING *****************
+    // POST request to /topics (adding new topic to topics array)
+app.post('/dashboard/:id', 
+    // MIDDLEWARE TO CREATE NEW TOPIC
+    (req, res) => {
+        
+        res.render('/dashboard', {output: req.params.id})
+    }
+)
+// -------------------------------------------------------------------
 
 //IF YOU WANT A REQUEST FROM SERVER
 // app.get('/api')
