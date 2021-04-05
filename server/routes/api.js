@@ -3,12 +3,13 @@ const Profile = require('../models/ProfilesModel');
 const router = express.Router();
 
 // Route to handle GET user to DASHBOARD
-router.post('/getProfile', async (req, res) => {
+router.get('/getProfile', async (req, res) => {
   // console.log('testhere!!')
-  res.locals = await Profile.find({ _id: req.cookies.ssid })
+  console.log('The req.cookies is: ', req.cookies);
+  res.locals.profile = await Profile.find({ _id: req.cookies.ssid })
 
-  console.log('the res.locals obj is: ', res.locals);
-  res.status(200).json(res.locals[0]);
+//   console.log('the res.locals obj is: ', res.locals.profile);
+  return res.status(200).json(res.locals.profile);
 })
 
 // Route to handle POST to INSERT a new TOPIC
