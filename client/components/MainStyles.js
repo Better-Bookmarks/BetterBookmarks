@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 export default makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    backgroundColor: theme.palette.background.default,
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -13,8 +14,8 @@ export default makeStyles((theme) => ({
   floatingActionButton: {
     margin: 0,
     top: 'auto',
-    right: 20,
-    bottom: 20,
+    right: 50,
+    bottom: 50,
     left: 'auto',
     position: 'fixed',
   },
@@ -27,7 +28,12 @@ export default makeStyles((theme) => ({
   content: {
     flexGrow: 1,
     height: '100vh',
+    // padding: theme.spacing(3),
     overflow: 'auto',
-    backgroundColor: 'gray',
+    // backgroundColor: '#fcfcfc',
+  },
+  logoButton: {
+    backgroundColor: '#64ffda',
+    color: '#ff99bb',
   }
 }));
