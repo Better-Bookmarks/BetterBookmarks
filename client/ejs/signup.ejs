@@ -18,12 +18,12 @@
     const form = document.getElementById('sign-up');
     form.addEventListener('submit', signUpUser)
 
-    async function signUpUser(event){
+    function signUpUser(event){
       // default behavior of the form is to refresh the page
       event.preventDefault()
       const username = document.getElementById('username').value
       const password = document.getElementById('password').value
-      await fetch('/signup', {
+      fetch('/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -33,6 +33,7 @@
           password
         })
       }).then(res => res.json())
+      .then(res => next())
   
 
     }

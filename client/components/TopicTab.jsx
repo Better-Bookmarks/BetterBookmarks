@@ -11,7 +11,7 @@ const TopicTab = (props) => {
     <div>
       <button type='button' onClick={() => {
         handleChange(props.topic, props.resources);
-        props.changeDisplay();
+        // props.changeDisplay();
       }}>
       {props.topic}
       </button>

@@ -147,7 +147,6 @@ const Main = () => {
     ]
   }
 
-  let display = 'click on a topic!';
   const classes = useStyles();
 
   const [ currentTopic, setCurrentTopic ] = useState(null);
@@ -157,7 +156,6 @@ const Main = () => {
   const handleChange = (newTopic, newResources) => {
     setCurrentTopic(newTopic);
     setCurrentResources(newResources);
-
   }
 
   const changeDisplay = () => {
@@ -167,8 +165,7 @@ const Main = () => {
     for (let resource in currentResources) {
       resourcesList.push(<Resource url={resource} description={currentResources[resource]} />)
     }
-    display = resourcesList;
-    console.log('this is our display: ', display)
+    setDisplay(resourcesList);
   }
 
   const [currentTab, setCurrentTab] = useState(Object.keys(responseBody.topics[0])[0])
@@ -219,12 +216,6 @@ const Main = () => {
     // display = resourcesList;
   }, [currentTopic])
 
-  console.log('display outside of useEffect: ', display);
-
-
-
-
-
   // CREATING TOPICS TABS --------------------------------------------------
   const topicsArr = [];
   for (let i = 0; i < responseBody.topics.length; i++) {
@@ -248,6 +239,7 @@ const Main = () => {
 
   // TAB HANDLING STATE MANAGEMENT -----------------------------------------
   const [value, setValue] = React.useState(0);
+  // Oauth || Recursion || Webpack Yargs Error
 
   const handleChangeDialog = (event, newValue) => {
     setValue(newValue);
@@ -285,7 +277,7 @@ const Main = () => {
               <AppBar position="static" color="default">
                 <Tabs
                   value={value}
-                  onChange={handleChange}
+                  // onChange={handleChangeTab}
                   indicatorColor="primary"
                   textColor="primary"
                   centered
