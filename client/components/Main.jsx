@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Avatar, AppBar, Button, Box, Container, Dialog, DialogActions, DialogTitle, DialogContent, DialogContentText, TextField, Grid, Toolbar, Typography, IconButton, Fab, Paper } from '@material-ui/core/';
+import { Avatar, AppBar, Button, Box, Container, Divider, Dialog, DialogActions, DialogTitle, DialogContent, DialogContentText, TextField, Grid, Toolbar, Typography, IconButton, Fab, Paper } from '@material-ui/core/';
 import { Tabs, Tab} from '@material-ui/core';
+// import TextField from '@material-ui/core/TextField';
 import MenuIcon from '@material-ui/icons/Menu';
 import AddIcon from '@material-ui/icons/Add';
 import BookIcon from '@material-ui/icons/Book';
-
 
 import useStyles from './MainStyles';
 import Resource from './Resource'
@@ -129,7 +129,7 @@ const Main = () => {
   // console.log('This is our response body: ', responseBody);
 
   const responseBody = {
-    username: 'username',
+    username: 'JasonLee42',
     password: 'password',
     topics: [
       {'OAuth' : {
@@ -138,10 +138,19 @@ const Main = () => {
         },
       },
       {'Recursion': {
+        recursion: 'recursion',
+        recursion: 'recursion',
+        recursion: 'recursion',
+        recursion: 'recursion',
+        recursion: 'recursion',
+        recursion: 'recursion',
+        recursion: 'recursion',
+        recursion: 'recursion',
+        recursion: 'recursion',
         }
       },
       {'Webpack yargs error': {
-        url1: 'You\'re bad at webpack'
+        exampleUrl: 'You\'re bad at webpack'
         }
       }
     ]
@@ -262,7 +271,7 @@ const Main = () => {
             Better Bookmarks
           </Typography>
           <Button variant="contained" color="secondary" style={{marginRight:'20px'}}>{responseBody.username}</Button>
-          <Button color="inherit">Login</Button>
+          <Button variant="outlined" color="inherit">Sign Out</Button>
         </Toolbar>
       </AppBar>
 
@@ -291,8 +300,143 @@ const Main = () => {
               </AppBar>
             </Grid>
           </Grid>
+          <div style={{padding: '25px'}}> 
+            <Grid container spacing={3}>
+              <Grid item xs={6}>
+                <Paper className={classes.paper}>
+                  <Box >
+                    <TextField
+                      id="outlined-helperText"
+                      label="URLs"
+                      defaultValue="https://www.cs.utah.edu/~germain/PPS/Topics/recursion.html#:~:text=Recursion%20is%20the%20process%20of,%22find%20your%20way%20home%22."
+                      helperText=" "
+                      variant="outlined"
+                      fullWidth
+                    />
+                    <TextField
+                      id="outlined-helperText"
+                      label="Description"
+                      defaultValue="University of Utah CS - Recursion"
+                      helperText=" "
+                      variant="outlined"
+                      fullWidth
+                    />
+                    <Divider />
+                    <Box display="flex "flexDirection="row-reverse" pt={2}>
+                      <Button variant="contained" color="secondary">
+                        Delete
+                      </Button>
+                      <Button variant="contained" color="primary" style={{marginRight:'20px'}}>
+                        Edit
+                      </Button>
+                      <Button variant="contained" color="default" style={{marginRight:'20px'}}>
+                        Show More
+                      </Button>
+                    </Box>
+                  </Box>
+                </Paper>
+              </Grid>
+              <Grid item xs={6}>
+                <Paper className={classes.paper}>
+                  <Box >
+                    <TextField
+                      id="outlined-helperText"
+                      label="URLs"
+                      defaultValue="https://web.mit.edu/6.005/www/fa15/classes/10-recursion/"
+                      helperText=" "
+                      variant="outlined"
+                      fullWidth
+                    />
+                    <TextField
+                      id="outlined-helperText"
+                      label="Description"
+                      defaultValue="MIT CS 6.005 - Recursion"
+                      helperText=" "
+                      variant="outlined"
+                      fullWidth
+                    />
+                    <Divider />
+                    <Box display="flex "flexDirection="row-reverse" pt={2}>
+                      <Button variant="contained" color="secondary">
+                        Delete
+                      </Button>
+                      <Button variant="contained" color="primary" style={{marginRight:'20px'}}>
+                        Edit
+                      </Button>
+                      <Button variant="contained" color="default" style={{marginRight:'20px'}}>
+                        Show More
+                      </Button>
+                    </Box>
+                  </Box>
+                </Paper>
+              </Grid>
+              <Grid item xs={6}>
+                <Paper className={classes.paper}>
+                  <Box >
+                    <TextField
+                      id="outlined-helperText"
+                      label="URLs"
+                      defaultValue="https://www.geeksforgeeks.org/recursion/"
+                      helperText=" "
+                      variant="outlined"
+                      fullWidth
+                    />
+                    <TextField
+                      id="outlined-helperText"
+                      label="Description"
+                      defaultValue="Recursion Article from GeeksForGeeks"
+                      helperText=" "
+                      variant="outlined"
+                      fullWidth
+                    />
+                    <Divider />
+                    <Box display="flex "flexDirection="row-reverse" pt={2}>
+                      <Button variant="contained" color="secondary">
+                        Delete
+                      </Button>
+                      <Button variant="contained" color="primary" style={{marginRight:'20px'}}>
+                        Edit
+                      </Button>
+                      <Button variant="contained" color="default" style={{marginRight:'20px'}}>
+                        Show More
+                      </Button>
+                    </Box>
+                  </Box>
+                </Paper>
+              </Grid>
+              <Grid item xs={6}>
+                <Paper className={classes.paper}>
+                  <Box >
+                    <TextField
+                      id="outlined-helperText"
+                      label="URLs"
+                      defaultValue=" "
+                      helperText=" "
+                      variant="outlined"
+                      fullWidth
+                    />
+                    <TextField
+                      id="outlined-helperText"
+                      label="Description"
+                      defaultValue=" "
+                      helperText=" "
+                      variant="outlined"
+                      fullWidth
+                    />
+                    <Divider />
+                    <Box display="flex "flexDirection="row-reverse" pt={2}>
+                      <Button variant="contained" color="primary">
+                        Add
+                      </Button>
+                    </Box>
+                  </Box>
+                </Paper>
+              </Grid>
+            </Grid>
+          </div>
           {topicsList}
           {display}
+          
         </div>
       </main>
       

@@ -22,7 +22,7 @@ export default makeStyles((theme) => ({
   appBarSpacer: theme.mixins.toolbar,
   paper: {
     padding: theme.spacing(2),
-    textAlign: 'center',
+    textAlign: 'left',
     color: theme.palette.text.secondary,
   },
   content: {
