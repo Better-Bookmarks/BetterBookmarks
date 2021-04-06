@@ -8,7 +8,7 @@
 </head>
 <body>
   <h1>Login Page</h1>
-  <form  method='POST' action='/login'>
+  <form id="log-in" method='POST' action='/login'>
     <input type="text" id="username" name="username" autocomplete="off" placeholder="Username"/>
     <input type="password" id="password" name="password" placeholder="Password"/>
     <input type="submit" value="Login" />
@@ -33,9 +33,6 @@
           password
         })
       }).then(res => res.json())
-      .then(res => next())
-  
-
     }
   </script> -->
 </body>

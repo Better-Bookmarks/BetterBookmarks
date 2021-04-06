@@ -70,7 +70,7 @@ userController.verifyUser = (req, res, next) => {
 
 // setSSIDCookie - middleware to store the user id in a cookie ----------------------------
 userController.setSSIDCookie = (req, res, next) => {
-  console.log('The res.locals in cookieController is: ', res.locals);
+  console.log('The res.locals in userController is: ', res.locals);
   res.cookie('ssid', res.locals.user.id, { httpOnly: true });
   next();
 }

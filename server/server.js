@@ -30,9 +30,11 @@ mongoose.connect(MONGO_URI, {
 app.set('view engine', 'ejs');
 // Parse urlencoded body content & save to req.body
 app.use(express.json());
+// Parse cookies & save to req.cookies
+app.use(cookieParser());
+// Parse urlencoded body content & save to req.body
 app.use(bodyParser.urlencoded({ extended: true }));
 // ------------------------------------------------------
-
 
 
 
@@ -74,14 +76,21 @@ app.post('/signup',
 app.get('/dashboard',
   // MIDDLE TO VERIFY USER
   (req, res) => {
+    console.log('req.cookies in app.get/dashboard is: ', req.cookies);
     res.render('../client/ejs/dashboard');
 });
 // -------------------------------------------------------------------
 
 
+<<<<<<< HEAD
 //IF YOU WANT A REQUEST FROM SERVER
 app.use('/api', apiRouter)
 
+=======
+// -------------- Route Handling for requests to /api ---------------
+app.use('/api', apiRouter)
+// -------------------------------------------------------------------
+>>>>>>> 4eba9afde0c25c4913697ab0b60a42199052b6f4
 
 
 // -------------------- 404 HANDLING ---------------------------------
@@ -96,7 +105,7 @@ app.use((err, res) => {
 
 
 
-app.listen(PORT, () => console.log(`Example app listening on port ${PORT}!`))
+app.listen(PORT, () => console.log(`Server listening on port: ${PORT}`))
 
 module.exports = app;
 
