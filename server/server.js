@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser'); 
 
 const path = require('path');
+  
 const app = express();
 const PORT = 3000;
 
@@ -69,6 +70,25 @@ app.post('/signup',
     res.redirect('/dashboard');
 });
 // ****************************************
+
+
+const Profile = require('./models/ProfilesModel');
+
+app.get('/getProfile', async (req, res) => {
+  // console.log('testhere!!')
+  console.log('The req.cookies in server is: ', req.cookies);
+  res.locals.profile = await Profile.find({ _id: req.cookies.ssid })
+
+//   console.log('the res.locals obj is: ', res.locals.profile);
+  return res.status(200).json(res.locals.profile);
+})
+
+
+
+
+
+
+
 
 
 

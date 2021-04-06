@@ -1,30 +1,22 @@
 import React from 'react'
+import Resource from './Resource'
 
-const TopicsTab = (props) => {
+const TopicTab = (props) => {
 
-  // props.topics looks like this -
-  // topics: {
-  //   //     'Oauth': {},
-  //   //     'Recursive': {},
-  //   //   }
-
-  // can use this to make a new topics topics state
-
-  // use the topics state to populate the tabs
-
-  
-    // inside the tabs make a cards child component (where url/description)
-  
-
-
-
-
+  const handleChange = (topic, resources) => {
+    props.onChange(topic, resources)
+  }
 
   return (
     <div>
+      <button type='button' onClick={() => {
+        handleChange(props.topic, props.resources);
+        props.changeDisplay();
+      }}>
       {props.topic}
+      </button>
     </div>
   )
 }
 
-export default TopicsTab;
+export default TopicTab;
