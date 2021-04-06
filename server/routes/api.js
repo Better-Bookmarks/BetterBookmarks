@@ -34,11 +34,6 @@ router.post('/addTopic', (req, res) => {
 })
 
 
-<<<<<<< HEAD
-// Route to handle POST to INSERT a new TOPIC
-router.post('/')
-// Route to handle POST to push url,description in Topics array
-=======
 
 
 
@@ -50,4 +45,3 @@ router.post('/')
 // Route to handle POST to push url,description in Topics array
 
 module.exports = router;
->>>>>>> 4eba9afde0c25c4913697ab0b60a42199052b6f4

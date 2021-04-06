@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser'); 
 
 const path = require('path');
+  
 const app = express();
 const PORT = 3000;
 
@@ -71,6 +72,25 @@ app.post('/signup',
 // ****************************************
 
 
+const Profile = require('./models/ProfilesModel');
+
+app.get('/getProfile', async (req, res) => {
+  // console.log('testhere!!')
+  console.log('The req.cookies in server is: ', req.cookies);
+  res.locals.profile = await Profile.find({ _id: req.cookies.ssid })
+
+//   console.log('the res.locals obj is: ', res.locals.profile);
+  return res.status(200).json(res.locals.profile);
+})
+
+
+
+
+
+
+
+
+
 
 // ----------------------- AUTHORIZED ROUTES ------------------------
 app.get('/dashboard',
@@ -82,15 +102,9 @@ app.get('/dashboard',
 // -------------------------------------------------------------------
 
 
-<<<<<<< HEAD
-//IF YOU WANT A REQUEST FROM SERVER
-app.use('/api', apiRouter)
-
-=======
 // -------------- Route Handling for requests to /api ---------------
 app.use('/api', apiRouter)
 // -------------------------------------------------------------------
->>>>>>> 4eba9afde0c25c4913697ab0b60a42199052b6f4
 
 
 // -------------------- 404 HANDLING ---------------------------------
